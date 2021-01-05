@@ -1,17 +1,17 @@
 package chat.bot
 
-import chat.bot.services.AuthorizationService
+import chat.bot.managers.GoogleTrendsManager
 import grails.converters.JSON
 import grails.rest.RestfulController
 
 class ApplicationController extends RestfulController<Object> {
-    AuthorizationService authorizationService
+    GoogleTrendsManager googleTrendsManager = new GoogleTrendsManager()
 
     ApplicationController() {
         super(Object)
     }
 
     def index() {
-        render authorizationService.getToken() as JSON
+        render googleTrendsManager.getDailyTrends() as JSON
     }
 }
