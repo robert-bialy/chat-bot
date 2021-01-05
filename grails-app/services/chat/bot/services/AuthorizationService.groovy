@@ -1,6 +1,6 @@
 package chat.bot.services
 
-import chat.bot.AuthorizationMessage
+import chat.bot.authorization.AuthorizationMessage
 
 class AuthorizationService {
     RequestHandler requestHandler = new RequestHandler()

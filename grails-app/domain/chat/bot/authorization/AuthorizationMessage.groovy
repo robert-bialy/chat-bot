@@ -1,4 +1,4 @@
-package chat.bot
+package chat.bot.authorization
 
 import grails.compiler.GrailsCompileStatic
 
