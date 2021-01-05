@@ -1,22 +1,21 @@
-# .gitignore for Grails 1.0.3
+user.gradle
+.gradle/
+target/
+build/
+out/
 
-# web application files that are overwritten by "grails upgrade"
-#  cf. GRAILS_HOME/scripts/Upgrade.groovy, target( upgrade )
-/web-app/WEB-INF
+*.DS_Store
+*.class
+*.swp
+*~
 
-# IDE support files that are overwritten by "grails upgrade"
-#  cf. GRAILS_HOME/scripts/CreateApp.groovy, target( createIDESupportFiles )
-# to be specific, you could replace "/*" below with your project name,
-#  e.g. "foobar.launch" (no slash)
+.idea
+*.iml
+*.ipr
+*.iws
+.shelf
+
+.settings/
 .classpath
 .project
-.settings
-/*.launch
-/*.tmproj
-
-# logs
-stacktrace.log
-/test/reports
-
-# project release file
-*.war
+bin/
