@@ -7,7 +7,7 @@ import chat.bot.services.GoogleTrendsService
 class GoogleTrendsManager {
     AuthorizationService authorizationService = new AuthorizationService()
     GoogleTrendsService googleTrendsService = new GoogleTrendsService()
-    String authorizationKey;
+    String authorizationKey
 
     Collection<DailyTrend> getDailyTrends() {
         if(authorizationKey == null) {

@@ -1,5 +1,5 @@
-package chat.bot.services
+package chat.bot.config
 
-class Config {
+class Constants {
     static String ApiUrl = "https://google-trends-rest-api.herokuapp.com"
 }
