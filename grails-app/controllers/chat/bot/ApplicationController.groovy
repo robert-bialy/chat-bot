@@ -14,4 +14,8 @@ class ApplicationController extends RestfulController<Object> {
     def index() {
         render googleTrendsManager.getDailyTrends() as JSON
     }
+
+    def webhook() {
+        render "czembo"
+    }
 }
