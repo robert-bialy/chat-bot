@@ -1,4 +1,4 @@
-package chat.bot
+package chat.bot.googleTrends
 
 class Title {
     String query

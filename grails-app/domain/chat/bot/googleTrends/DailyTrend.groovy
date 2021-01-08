@@ -1,4 +1,4 @@
-package chat.bot
+package chat.bot.googleTrends
 
 import grails.compiler.GrailsCompileStatic
 
