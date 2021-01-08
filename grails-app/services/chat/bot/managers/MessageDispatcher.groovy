@@ -1,20 +1,21 @@
 package chat.bot.managers
 
-
 import chat.bot.facebookMessages.RequestMessage
-import chat.bot.services.MessengerService
+import chat.bot.tasks.HandleMessageTaskFactory
+
+import java.util.concurrent.ExecutorService
 
 class MessageDispatcher {
-    final GoogleTrendsManager googleTrendsManager
-    final MessengerService messengerService
+    final HandleMessageTaskFactory handleMessageTaskFactory
+    final ExecutorService executorService
 
-    MessageDispatcher(GoogleTrendsManager googleTrendsManager, MessengerService messengerService) {
-        this.googleTrendsManager = googleTrendsManager
-        this.messengerService = messengerService
+    MessageDispatcher(HandleMessageTaskFactory handleMessageTaskFactory, ExecutorService executorService) {
+        this.handleMessageTaskFactory = handleMessageTaskFactory
+        this.executorService = executorService
     }
 
     void HandleMessage(RequestMessage requestMessage) {
-        //Collection<DailyTrend> dailyTrends = googleTrendsManager.getDailyTrends()
-        messengerService.SendMessage(requestMessage.sender.id, "Test message")
+        def handleMessageTask = handleMessageTaskFactory.createMessageTask(requestMessage)
+        executorService.execute(handleMessageTask)
     }
 }
