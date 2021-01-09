@@ -53,6 +53,7 @@ dependencies {
     compile "org.grails.plugins:views-json"
     compile "org.grails.plugins:views-json-templates"
     compile 'io.github.http-builder-ng:http-builder-ng-core:1.0.4'
+    compile 'com.github.jsimone:webapp-runner:8.5.11.3'
     compileOnly "io.micronaut:micronaut-inject-groovy"
     console "org.grails:grails-console"
     profile "org.grails.profiles:rest-api"
@@ -80,6 +81,20 @@ bootRun {
     String springProfilesActive = 'spring.profiles.active'
     systemProperty springProfilesActive, System.getProperty(springProfilesActive)
 }
+
+task stage() {
+    dependsOn clean, war
+}
+war.mustRunAfter clean
+
+task copyToLib(type: Copy) {
+    into "$buildDir/server"
+    from(configurations.compile) {
+        include "webapp-runner*"
+    }
+}
+
+stage.dependsOn(copyToLib)
 
 tasks.withType(GroovyCompile) {
     configure(groovyOptions) {
