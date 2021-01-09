@@ -29,7 +29,7 @@ class ApplicationController extends RestfulController<Object> {
         String challenge = webHookManager.validateParameters(request.parameterMap)
 
         if(challenge != null) {
-            render (contentType: 'text/json', status: 200, results: challenge)
+            render (contentType: 'text/json', status: 200, text: challenge)
         } else {
             render (contentType: 'text/json', status: 403, text: 'Invalid verification token')
         }
