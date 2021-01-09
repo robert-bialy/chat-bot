@@ -1,12 +1,6 @@
-package chat.bot
+package chat.bot.managers
 
-import chat.bot.managers.HerokuGoogleTrendsManager
-import chat.bot.managers.MessageDispatcher
-import chat.bot.services.AuthorizationService
-import chat.bot.services.FacebookMessengerService
-import chat.bot.services.GoogleTrendsService
-import chat.bot.services.JavaConnectionRequestHandler
-import chat.bot.services.RequestHandler
+import chat.bot.services.*
 import chat.bot.tasks.HandleMessageTaskFactory
 
 import java.util.concurrent.ForkJoinPool

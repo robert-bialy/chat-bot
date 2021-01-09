@@ -15,6 +15,6 @@ class HandleMessageTaskFactory {
     }
 
     HandleMessageTask createMessageTask(RequestMessage requestMessage) {
-        return new HandleMessageTask(requestMessage, googleTrendsManager, messengerService)
+        return new HandleMessageTask(requestMessage,  messengerService, googleTrendsManager)
     }
 }

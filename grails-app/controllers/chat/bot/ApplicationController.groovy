@@ -2,6 +2,7 @@ package chat.bot
 
 import chat.bot.facebookMessages.RequestMessage
 import chat.bot.managers.MessageDispatcher
+import chat.bot.managers.MessageDispatcherFactory
 import chat.bot.managers.WebHookManager
 import grails.converters.JSON
 import grails.rest.RestfulController

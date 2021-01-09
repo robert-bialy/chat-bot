@@ -19,6 +19,6 @@ class HandleMessageTask implements Runnable {
     @Override
     void run() {
         Collection<DailyTrend> dailyTrends = googleTrendsManager.getDailyTrends()
-        messengerService.SendMessage(requestMessage.sender.id, "Test message")
+        //messengerService.SendMessage(requestMessage.sender.id, "Test message")
     }
 }
