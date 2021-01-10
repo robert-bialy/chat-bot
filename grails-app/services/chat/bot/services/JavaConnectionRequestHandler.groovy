@@ -21,9 +21,9 @@ class JavaConnectionRequestHandler implements RequestHandler {
         }
         connection.setDoOutput(true)
 
-        OutputStream outputStream = connection.getOutputStream()
         String result
         try {
+            OutputStream outputStream = connection.getOutputStream()
             outputStream.write(messageBytes)
             result = connection.getInputStream().getText()
         } catch (Exception ex) {

@@ -22,7 +22,7 @@ class ResponseMessage {
 
 class FacebookMessengerService implements MessengerService {
     final RequestHandler requestHandler
-    final Logger logger = new Logger("FacebookMessengerService")
+    final Logger logger = Logger.getLogger("FacebookMessengerService")
 
     FacebookMessengerService(RequestHandler requestHandler) {
         this.requestHandler = requestHandler
@@ -32,7 +32,7 @@ class FacebookMessengerService implements MessengerService {
         ResponseMessage responseMessage = new ResponseMessage(senderId, message)
         String json = new JsonBuilder(responseMessage).toPrettyString()
         String url = Constants.MessengerEndpoint + '?access_token=' + Constants.AccessToken
-        
+
         try {
             requestHandler.makePostCall(url, json,  RequestMessage.class)
         } catch (Exception ex) {
