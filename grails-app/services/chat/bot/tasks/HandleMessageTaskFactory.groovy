@@ -1,20 +1,19 @@
 package chat.bot.tasks
 
 import chat.bot.facebookMessages.RequestMessage
-import chat.bot.managers.GoogleTrendsManager
+import chat.bot.managers.MessageBuilderManager
 import chat.bot.services.MessengerService
 
 class HandleMessageTaskFactory {
-    final GoogleTrendsManager googleTrendsManager
+    final MessageBuilderManager messageBuilderService
     final MessengerService messengerService
 
-
-    HandleMessageTaskFactory(GoogleTrendsManager googleTrendsManager, MessengerService messengerService) {
-        this.googleTrendsManager = googleTrendsManager
+    HandleMessageTaskFactory(MessengerService messengerService, MessageBuilderManager messageBuilderService) {
+        this.messageBuilderService = messageBuilderService
         this.messengerService = messengerService
     }
 
     HandleMessageTask createMessageTask(RequestMessage requestMessage) {
-        return new HandleMessageTask(requestMessage,  messengerService, googleTrendsManager)
+        return new HandleMessageTask(requestMessage,  messengerService, messageBuilderService)
     }
 }

@@ -10,27 +10,48 @@ class JavaConnectionRequestHandler implements RequestHandler {
     }
 
     def <T> T makePostCall(String url, String message, Class<T> requiredType, String token = null) {
-        def connection = (HttpURLConnection)new URL(url).openConnection()
+        HttpURLConnection connection = (HttpURLConnection)new URL(url).openConnection()
+        byte[] messageBytes = message.getBytes("UTF-8")
         connection.setRequestMethod("POST")
         connection.setRequestProperty( "Content-Type", "application/json")
         connection.setRequestProperty( "charset", "utf-8");
-        connection.setRequestProperty( "Content-Length", Integer.toString(message.bytes.length))
+        connection.setRequestProperty( "Content-Length", Integer.toString(messageBytes.length))
         if(token != null) {
             connection.setRequestProperty("Authorization","Bearer "+ token)
         }
         connection.setDoOutput(true)
-        connection.getOutputStream().write(message.getBytes("UTF-8"))
-        def result = connection.getInputStream().getText()
+
+        OutputStream outputStream = connection.getOutputStream()
+        String result
+        try {
+            outputStream.write(messageBytes)
+            result = connection.getInputStream().getText()
+        } catch (Exception ex) {
+            println(ex.message)
+            throw ex
+        }
+        finally {
+            connection.disconnect()
+        }
 
         return jsonSlurper.parseText(result) as T
     }
 
     def <T> T makeGetCall(String url, Class<T> requiredType, String token = null) {
-        def connection = new URL(url).openConnection()
+        HttpURLConnection connection = (HttpURLConnection)new URL(url).openConnection()
         if(token != null) {
             connection.setRequestProperty("Authorization","Bearer "+ token)
         }
-        def result = connection.getInputStream().getText()
+
+        String result
+        try {
+            result = connection.getInputStream().getText()
+        } catch (Exception ex) {
+            println(ex.message)
+            throw ex
+        } finally {
+            connection.disconnect()
+        }
 
         return jsonSlurper.parseText(result) as T
     }

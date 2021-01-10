@@ -8,13 +8,14 @@ import java.util.concurrent.ForkJoinPool
 class MessageDispatcherFactory {
     MessageDispatcher createMessageDispatcher() {
         RequestHandler requestHandler = new JavaConnectionRequestHandler()
+        GoogleTrendsManager googleTrendsManager = new HerokuGoogleTrendsManager(
+                new AuthorizationService(requestHandler),
+                new GoogleTrendsService(requestHandler))
 
         return new MessageDispatcher(
                 new HandleMessageTaskFactory(
-                        new HerokuGoogleTrendsManager(
-                                new AuthorizationService(requestHandler),
-                                new GoogleTrendsService(requestHandler)),
-                        new FacebookMessengerService(requestHandler)),
+                        new FacebookMessengerService(requestHandler),
+                        new GoogleTrendsMessageBuilderManager(googleTrendsManager)),
                 new ForkJoinPool())
     }
 }
