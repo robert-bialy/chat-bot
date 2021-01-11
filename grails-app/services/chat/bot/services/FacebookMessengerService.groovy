@@ -3,7 +3,6 @@ package chat.bot.services
 import chat.bot.config.Constants
 import chat.bot.facebookMessages.RequestMessage
 import groovy.json.JsonBuilder
-import org.apache.logging.log4j.Level
 
 import java.util.logging.Logger
 
@@ -36,7 +35,7 @@ class FacebookMessengerService implements MessengerService {
         try {
             requestHandler.makePostCall(url, json,  RequestMessage.class)
         } catch (Exception ex) {
-            logger.log(Level.ERROR, ex.message)
+            logger.log(java.util.logging.Level.WARNING, ex.message)
             return null
         }
     }

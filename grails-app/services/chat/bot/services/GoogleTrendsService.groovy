@@ -1,8 +1,8 @@
 package chat.bot.services
 
 import chat.bot.config.Constants
-import org.apache.logging.log4j.Level
 
+import java.util.logging.Level
 import java.util.logging.Logger
 
 class GoogleTrendsService {
@@ -19,7 +19,7 @@ class GoogleTrendsService {
         try {
             return requestHandler.makeGetCall(url, Object.class, token)
         } catch (Exception ex) {
-            logger.log(Level.ERROR, ex.message)
+            logger.log(Level.WARNING, ex.message)
             return null
         }
     }

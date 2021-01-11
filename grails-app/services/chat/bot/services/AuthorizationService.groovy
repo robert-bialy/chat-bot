@@ -2,7 +2,6 @@ package chat.bot.services
 
 import chat.bot.authorization.AuthorizationMessage
 import chat.bot.config.Constants
-import org.apache.logging.log4j.Level
 
 import java.util.logging.Logger
 
@@ -20,7 +19,7 @@ class AuthorizationService {
 
             return requestHandler.makePostCall(url, payload, AuthorizationMessage.class)
         } catch (Exception ex) {
-            logger.log(Level.ERROR, ex.message)
+            logger.log(java.util.logging.Level.WARNING, ex.message)
             return null
         }
     }
