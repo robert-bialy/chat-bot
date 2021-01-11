@@ -13,7 +13,7 @@ class GoogleTrendsMessageBuilderManager implements MessageBuilderManager {
 
     @Override
     Collection<String> createMessage(String message) {
-        Collection<String> response = getDailyTrendsResponse()
+        Collection<String> response = getDailyTrendsResponse().first()
         return response
     }
 
